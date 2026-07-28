@@ -50,8 +50,9 @@ El sistema arranca inactivo y espera un sonido fuerte (aplauso/grito) captado po
 
 ## 📸 Demo
 
-<img width="591" height="1280" alt="image" src="https://github.com/user-attachments/assets/60407867-aa1f-41a9-b6bd-551f151816e0" />
+<img src="media/montaje-semaforo.jpeg" alt="Montaje del semáforo en protoboard con el ESP32" width="450">
 
+Montaje completo en protoboard: los 8 LEDs del semáforo, el display de 7 segmentos de 2 dígitos, el potenciómetro de brillo y el buzzer, conectados al ESP32 D1 R32.
 
 ## 🧠 Contexto de construcción
 
