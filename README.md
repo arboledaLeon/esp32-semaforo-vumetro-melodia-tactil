@@ -36,10 +36,9 @@ El sistema arranca inactivo y espera un sonido fuerte (aplauso/grito) captado po
 
 ## 🐛 Problemas que encontré y cómo los resolví
 
-- **Import roto que impedía arrancar el programa:** una versión anterior de este código controlaba el brillo del display con PWM de hardware. Cuando pasé a controlar el brillo con un `Pin` digital simple y tiempos calculados en milisegundos (como pidió el profesor), quedó un `import pwm` suelto y sin usar — y encima mal escrito (la clase real se llama `PWM`, en mayúscula). En el ESP32 real esto lanza un `ImportError` y el script ni siquiera arranca. Lo resolví eliminando el import muerto.
-- **Dos umbrales sin nombre que coincidían por casualidad:** el umbral del touch y el umbral del micrófono para arrancar el sistema tenían el mismo valor (600) sin relación real entre ellos — uno mide capacitancia, el otro volumen de sonido. Los convertí en constantes con nombre (`UMBRAL_TOUCH`, `UMBRAL_SONIDO`) y dejé un comentario aclarando que es coincidencia, para no confundir a futuro.
-- **GPIO0 y GPIO2 son pines de arranque del ESP32:** usarlos para seleccionar los dígitos del display podía interferir con el boot del microcontrolador. La solución (ya en el circuito físico) fue agregar resistencias externas de 10kΩ a 3.3V en ambos pines, para forzar el estado correcto durante el arranque.
-- **Evitar un estado inseguro en el semáforo:** si cada LED se prendiera/apagara uno por uno con `pin.value()`, había un instante intermedio donde dos calles podían quedar en verde a la vez. Por eso el semáforo se controla escribiendo los 8 LEDs de una sola vez en el registro `mem32[GPIO]` — cambian todos en el mismo ciclo de reloj.
+- **GPIO34 (pulsador peatonal) daba lecturas caóticas:** un pin de entrada sin nada conectado "flota" y capta ruido eléctrico del ambiente, leyendo 0 y 1 al azar sin que nadie toque el botón. Lo resolví agregando una resistencia pull-down externa de 10kΩ a GND, que fuerza el pin a 0V estable cuando el botón no está presionado.
+- **GPIO0 y GPIO2 (selección de dígitos del display) son pines de arranque del ESP32:** si quedan en el estado equivocado durante el boot, la placa puede fallar al arrancar. La solución fue agregar una resistencia pull-up externa de 10kΩ a 3.3V en cada uno, para garantizar que arranquen en HIGH sin afectar su uso normal después del boot.
+- **Regular el brillo del display sin usar PWM de hardware:** la consigna era controlar el semáforo con `mem32` y tiempos fijos, sin el periférico de PWM del ESP32. Para tener brillo regulable en el display de todos modos, terminé simulando un "PWM por software": alternar encendido y apagado a alta velocidad según la lectura del potenciómetro, en vez de usar `PWM().duty()`.
 
 ## 🚀 Cómo compilarlo / flashearlo
 
