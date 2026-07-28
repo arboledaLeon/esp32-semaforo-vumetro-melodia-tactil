@@ -50,7 +50,8 @@ El sistema arranca inactivo y espera un sonido fuerte (aplauso/grito) captado po
 
 ## 📸 Demo
 
-*(Agrega aquí una foto o video corto del circuito armado y funcionando — no encontré fotos del montaje físico en tus documentos, solo diagramas de referencia.)*
+<img width="591" height="1280" alt="image" src="https://github.com/user-attachments/assets/60407867-aa1f-41a9-b6bd-551f151816e0" />
+
 
 ## 🧠 Contexto de construcción
 
