@@ -54,4 +54,4 @@ El sistema arranca inactivo y espera un sonido fuerte (aplauso/grito) captado po
 
 ## 🧠 Contexto de construcción
 
-Proyecto desarrollado para la asignatura de Electrónica Digital 2-2026-1.ITM (Ingeniería Biomédica). Código, comentarios y esta documentación revisados y pulidos en julio de 2026 para reflejar con precisión cómo funciona el sistema.
+Proyecto desarrollado para la asignatura de Electrónica Digital 2, semestre 2026-1, Ingeniería Biomédica — ITM (Instituto Tecnológico Metropolitano). Código, comentarios y esta documentación revisados y pulidos en julio de 2026 para reflejar con precisión cómo funciona el sistema.
